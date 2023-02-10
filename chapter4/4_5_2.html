@@ -1,0 +1,37 @@
+<html>
+<header>
+<title>Sample Infura connectivity check</title>
+<script
+
+
+src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0- beta.36/dist/web3.min.js" integrity="sha256- nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script>
+if (typeof web3 !== 'undefined') {
+web3 = new Web3(web3.currentProvider);
+} else {
+// Set the provider you want from Web3.providers
+web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/v3/b1c76cbfffd24d09aa70726f91de1004"));
+}
+</script>
+</header>
+<body>
+<div>
+<h2>Latest Block</h2><span id="lastblock"></span>
+<h2>My balance</h2><span id="balance"></span>
+<h2>node information</h2><span id="nodeInfo"></span>
+</div>
+<script>
+
+web3.eth.getBlockNumber(function (err, res) { if (err) console.log(err)
+$( "#lastblock" ).text(res)
+})
+web3.eth.getBalance("0xb96aeD3A4e11bBB1C028Ac96420305c803880Cd3", function (err, res) { if (err) console.log(err)
+$( "#balance" ).text(res)
+})
+web3.eth.getNodeInfo(function (err, res) { if (err) console.log(err)
+$( "#nodeInfo" ).text(res)
+})
+</script>
+</body>
+</html>
